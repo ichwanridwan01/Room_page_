@@ -1,0 +1,304 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Spartan", sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "content-main content-main aside aside"
+    "content-main content-main aside aside"
+    "image-dark about about image-light";
+  padding: 50px;
+}
+
+/*? Content Main */
+.container .content-main {
+  grid-area: content-main;
+  background-image: url(images/desktop-image-hero-1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.container .content-main nav {
+  display: flex;
+  column-gap: 20px;
+  padding: 50px;
+}
+.container .content-main nav .icon {
+  color: white;
+}
+.container .content-main nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+
+.container .content-main nav ul a {
+  text-decoration: none;
+  color: white;
+  transition: all 0.1s;
+  font-size: 0.8em;
+}
+
+.container .content-main nav ul a:hover {
+  border-bottom: 3px solid white;
+  transition: all 0.1s;
+}
+
+/*! Toggle */
+.toggle-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+
+.toggle-menu input[type="checkbox"] {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.toggle-menu span {
+  display: block;
+  background-color: white;
+  width: 23px;
+  height: 3px;
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+
+.toggle-menu span:nth-child(2) {
+  transform-origin: 0 0;
+}
+
+.toggle-menu input:checked ~ span:nth-child(2) {
+  background-color: white;
+  transform: rotate(45deg) translate(3px, -1px);
+}
+
+.toggle-menu span:nth-child(4) {
+  transform-origin: 0 100%;
+}
+
+.toggle-menu input:checked ~ span:nth-child(4) {
+  background-color: white;
+  transform: rotate(-45deg) translate(4px, 0px);
+}
+
+.toggle-menu input:checked ~ span:nth-child(3) {
+  transform: scale(0);
+}
+
+/* Todo Aside */
+.container aside {
+  grid-area: aside;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  row-gap: 100px;
+}
+
+.container aside .information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  row-gap: 30px;
+  padding: 30px;
+}
+
+.container aside .information h1 {
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+.container aside .information p {
+  font-size: 0.9em;
+  text-align: justify;
+  color: hsl(0, 0%, 63%);
+}
+
+.container aside .information h3 {
+  font-size: 0.8em;
+  color: rgb(206, 206, 206);
+  letter-spacing: 15px;
+}
+
+.container aside .prev-next {
+  display: flex;
+}
+
+.container aside button {
+  padding: 10px;
+  width: 10%;
+  border: none;
+  background-color: black;
+  cursor: pointer;
+}
+
+.container aside button:hover {
+  background-color: hsl(0, 0%, 27%);
+}
+
+/* todo About */
+.container .about {
+  grid-area: about;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  text-align: justify;
+  row-gap: 10px;
+}
+
+.container .about h4 {
+  letter-spacing: 5px;
+}
+
+.container .about p {
+  font-size: 0.7em;
+  color: hsl(0, 0%, 63%);
+}
+
+/* !BreakPoint Responsive */
+@media (max-width: 1024px) {
+  .container {
+    display: inherit;
+  }
+  .content-main {
+    height: 500px;
+  }
+  aside .information {
+    order: 1;
+  }
+  .image-dark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about p {
+    width: 400px;
+  }
+  .image-light {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .toggle-menu {
+    display: flex;
+  }
+
+  nav ul {
+    position: absolute;
+    display: flex;
+    right: 35%;
+    top: 20%;
+    background-color: white;
+    width: 90%;
+    height: 5vh;
+    z-index: 0;
+    transform: scale(0);
+    opacity: 0;
+    transition: all 1s;
+  }
+
+  nav ul.slide {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .container .content-main nav ul li a {
+    color: black;
+  }
+
+  .content-main nav .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  /* ? Toggle Menu */
+  .toggle-menu {
+    display: flex;
+  }
+
+  nav ul {
+    position: absolute;
+    display: flex;
+    right: 35%;
+    top: 20%;
+    background-color: white;
+    width: 90%;
+    height: 5vh;
+    z-index: 0;
+    transform: scale(0);
+    opacity: 0;
+    transition: all 1s;
+  }
+
+  nav ul.slide {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .container .content-main nav ul li a {
+    color: black;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-main {
+    height: 500px;
+  }
+
+  .content-main nav .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .container aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  aside .information {
+    order: 1;
+  }
+}
